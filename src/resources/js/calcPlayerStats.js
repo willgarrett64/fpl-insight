@@ -109,7 +109,6 @@ async function calcPlayerStats(player, data) {
   newPlayer.last_10 = statsLastGames(10, newPlayer);
 
 
-
   return newPlayer;
 };
 

@@ -90,7 +90,6 @@ const statsLastGames = (noGames, player) => {
   newPlayer.avg_points_fdr_5 = avgPoints(fdr[4]);
  
 
-  console.log(newPlayer);
   return newPlayer
 }
 
