@@ -1,8 +1,8 @@
 {
   "files": {
-    "main.css": "/fpl-insight/static/css/main.04c97b61.chunk.css",
-    "main.js": "/fpl-insight/static/js/main.cce6b0f4.chunk.js",
-    "main.js.map": "/fpl-insight/static/js/main.cce6b0f4.chunk.js.map",
+    "main.css": "/fpl-insight/static/css/main.85651b57.chunk.css",
+    "main.js": "/fpl-insight/static/js/main.c98422e8.chunk.js",
+    "main.js.map": "/fpl-insight/static/js/main.c98422e8.chunk.js.map",
     "runtime-main.js": "/fpl-insight/static/js/runtime-main.6ec8b2f6.js",
     "runtime-main.js.map": "/fpl-insight/static/js/runtime-main.6ec8b2f6.js.map",
     "static/js/2.d5b45c37.chunk.js": "/fpl-insight/static/js/2.d5b45c37.chunk.js",
@@ -10,14 +10,14 @@
     "static/js/3.69c7faee.chunk.js": "/fpl-insight/static/js/3.69c7faee.chunk.js",
     "static/js/3.69c7faee.chunk.js.map": "/fpl-insight/static/js/3.69c7faee.chunk.js.map",
     "index.html": "/fpl-insight/index.html",
-    "static/css/main.04c97b61.chunk.css.map": "/fpl-insight/static/css/main.04c97b61.chunk.css.map",
+    "static/css/main.85651b57.chunk.css.map": "/fpl-insight/static/css/main.85651b57.chunk.css.map",
     "static/js/2.d5b45c37.chunk.js.LICENSE.txt": "/fpl-insight/static/js/2.d5b45c37.chunk.js.LICENSE.txt",
     "static/media/logo.f750ad72.png": "/fpl-insight/static/media/logo.f750ad72.png"
   },
   "entrypoints": [
     "static/js/runtime-main.6ec8b2f6.js",
     "static/js/2.d5b45c37.chunk.js",
-    "static/css/main.04c97b61.chunk.css",
-    "static/js/main.cce6b0f4.chunk.js"
+    "static/css/main.85651b57.chunk.css",
+    "static/js/main.c98422e8.chunk.js"
   ]
 }
