@@ -1,0 +1,10 @@
+:root {
+  --insight-orange: #f4bb28;
+  --insight-orange-dark: #efae0b;
+  --insight-grey: #545454;
+  --insight-grey-light: #ced4da;
+}
+
+.panel {
+  @apply w-full bg-white rounded-md shadow-md p-4;
+}
