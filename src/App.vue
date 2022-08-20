@@ -1,7 +1,7 @@
 <template>
   <NavbarTop />
   <main class="px-10 mt-10">
-
+    <router-view />
   </main>
 </template>
 

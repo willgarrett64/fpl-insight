@@ -5,6 +5,11 @@
   --insight-grey-light: #ced4da;
 }
 
+/* panels - white box that holds content on the page */
 .panel {
   @apply w-full bg-white rounded-md shadow-md p-4;
+}
+.panel .title {
+  @apply text-lg font-bold mb-2 w-full border-b;
+  border-color: var(--insight-grey);
 }
