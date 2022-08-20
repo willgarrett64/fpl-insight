@@ -1,5 +1,5 @@
 <template>
-  <div class="panel">
+  <div class="panel col-span-2">
     <h4 class="title">Stats</h4>
     <div class="stats_grid">
       <div v-for="(sectionStats, section) in stats" :key="section" class="stats_grid-column">
@@ -39,7 +39,7 @@ export default {
           { label: 'Bonus Points System', shortLabel: 'BPS', key: 'bps'},
         ],
         // Average stats
-        average: [
+        averages: [
           { label: 'Points per Million', shortLabel: 'PpM', key: 'points_per_million'},
           { label: 'Points per Gameweek', shortLabel: 'PpGW', key: 'points_per_game'},
           { label: 'Points per Game Played', shortLabel: 'PpGP', key: 'points_per_mins_played'},
@@ -85,7 +85,10 @@ export default {
 }
 .stats_grid-column {
   @apply flex flex-col border-r-2 pr-4;
-  border-color: var(--insight-grey)
+  border-color: var(--insight-grey);
+}
+.stats_grid-column:last-child {
+  @apply border-r-0
 }
 .stat_wrapper {
   @apply flex justify-between;

@@ -1,7 +1,9 @@
 <template>
   <NavbarTop />
-  <main class="px-10 mt-10">
-    <router-view />
+  <main class="w-full px-10 my-10 flex justify-center">
+    <div class="w-full max-w-4xl">
+      <router-view />
+    </div>
   </main>
 </template>
 
