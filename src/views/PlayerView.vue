@@ -2,20 +2,20 @@
   <div v-if="player" class="grid grid-cols-2 gap-4">
     <PlayerOverview :player=player />
     <PlayerStatsGrid :player=player />
-    <div class="panel col-span-2">
-      <h4 class="title">Upcoming Fixtures</h4>
-    </div>
+    <PlayerFixtures :fixtures=player.fixtures.fixtures />
   </div>
 </template>
 
 <script>
 import * as api from '../api'
+import PlayerFixtures from '../components/PlayerFixtures.vue'
 import PlayerOverview from '../components/PlayerOverview.vue'
 import PlayerStatsGrid from '../components/PlayerStatsGrid.vue'
 
 export default {
   name: 'PlayerView',
   components: {
+    PlayerFixtures,
     PlayerOverview,
     PlayerStatsGrid
   },

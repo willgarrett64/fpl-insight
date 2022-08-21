@@ -3,6 +3,11 @@
   --insight-orange-dark: #efae0b;
   --insight-grey: #545454;
   --insight-grey-light: #ced4da;
+  --fdr1: #375523;
+  --fdr2: #01fc7a;
+  --fdr3: #e7e7e7;
+  --fdr4: #ff1751;
+  --fdr5: #80072d;
 }
 
 /* panels - white box that holds content on the page */
@@ -10,6 +15,27 @@
   @apply w-full bg-white rounded-md shadow-md p-4;
 }
 .panel .title {
-  @apply text-lg font-bold mb-2 w-full border-b;
-  border-color: var(--insight-grey);
+  @apply text-lg font-bold mb-2 w-full;
+}
+
+/* fixture difficulty ratings (fdr) */
+.fdr1 {
+  @apply text-white;
+  background-color: var(--fdr1);
+}
+.fdr2 {
+  @apply text-black;
+  background-color: var(--fdr2);
+}
+.fdr3 {
+  @apply text-black;
+  background-color: var(--fdr3);
+}
+.fdr4 {
+  @apply text-white;
+  background-color: var(--fdr4);
+}
+.fdr5 {
+  @apply text-white;
+  background-color: var(--fdr5);
 }
