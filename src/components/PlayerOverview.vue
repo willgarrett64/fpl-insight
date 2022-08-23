@@ -1,5 +1,5 @@
 <template>
-   <div class="panel col-span-2">
+  <div class="panel col-span-2">
     <div class="flex flex-col">
       <h4 class="title">Player Overview</h4>
       <span>{{ player.web_name }}</span>

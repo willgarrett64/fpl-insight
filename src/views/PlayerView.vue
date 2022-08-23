@@ -3,6 +3,7 @@
     <PlayerOverview :player=player />
     <PlayerStatsGrid :player=player />
     <PlayerFixtures :fixtures=player.fixtures.fixtures />
+    <PlayerResults :player=player />
   </div>
 </template>
 
@@ -10,6 +11,7 @@
 import * as api from '../api'
 import PlayerFixtures from '../components/PlayerFixtures.vue'
 import PlayerOverview from '../components/PlayerOverview.vue'
+import PlayerResults from '../components/PlayerResults.vue'
 import PlayerStatsGrid from '../components/PlayerStatsGrid.vue'
 
 export default {
@@ -17,7 +19,8 @@ export default {
   components: {
     PlayerFixtures,
     PlayerOverview,
-    PlayerStatsGrid
+    PlayerResults,
+    PlayerStatsGrid,
   },
   data() {
     return {
