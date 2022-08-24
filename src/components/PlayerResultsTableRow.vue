@@ -1,6 +1,12 @@
 <template>
   <tr>
-    <td v-for="col in columns" :key="col.shortLabel">{{ fixture[col.key] }}</td>
+    <td
+      v-for="col in columns"
+      :key="col.shortLabel"
+      class="text-center"
+    >
+      {{ fixture[col.key] }}
+    </td>
   </tr>
 </template>
 
@@ -13,5 +19,4 @@ export default {
 </script>
 
 <style scoped>
-
 </style>

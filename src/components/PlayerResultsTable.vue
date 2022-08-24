@@ -1,8 +1,14 @@
 <template>
-  <div>
+  <div class="w-full overflow-x-scroll mb-4">
     <table>
       <thead>
-        <th v-for="col in columns" :key="col.shortLabel">{{ col.shortLabel }}</th>
+        <th
+        v-for="col in columns"
+        :key="col.shortLabel"
+        class="px-4"
+        >
+          {{ col.shortLabel }}
+        </th>
       </thead>
       <tbody>
         <PlayerResultsTableRow
@@ -47,8 +53,6 @@ export default {
           { label: 'Creativity', shortLabel: 'C', key: 'creativity'},
           { label: 'Threat', shortLabel: 'T', key: 'threat'},
           { label: 'ICT Index', shortLabel: 'ICT', key: 'ict_index'},
-          { label: 'Transfers In', shortLabel: 'TI', key: 'transfers_in'},
-          { label: 'Transfers Out', shortLabel: 'TO', key: 'transfers_out'},
           { label: 'Net Transfers', shortLabel: 'NT', key: 'transfers_balance'},
           { label: 'Price', shortLabel: '£', key: 'value'},
       ]
@@ -58,5 +62,7 @@ export default {
 </script>
 
 <style scoped>
-
+.table_header {
+  @apply w-10
+}
 </style>

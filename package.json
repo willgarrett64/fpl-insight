@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@headlessui/vue": "^1.6.7",
+    "@heroicons/vue": "^2.0.1",
     "chart.js": "^3.9.1",
     "core-js": "^3.6.5",
     "superagent": "^8.0.0",
