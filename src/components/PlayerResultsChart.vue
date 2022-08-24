@@ -50,25 +50,29 @@ export default {
             data: this.results.map(fixture => fixture.total_points),
             label: 'Points',
             backgroundColor: 'blue',
-            borderColor: 'blue'
+            borderColor: 'blue',
+            yAxisID: 'y1'
           },
           {
             data: this.results.map(fixture => fixture.goals_scored),
             label: 'Goals Scored',
             backgroundColor: '#fab005',
-            borderColor: '#fab005'
+            borderColor: '#fab005',
+            yAxisID: 'y'
           },
           {
             data: this.results.map(fixture => fixture.assists),
             label: 'Assists',
             backgroundColor: 'red',
-            borderColor: 'red'
+            borderColor: 'red',
+            yAxisID: 'y'
           },
           {
             data: this.results.map(fixture => fixture.bonus),
             label: 'Bonus',
             backgroundColor: 'green',
-            borderColor: 'green'
+            borderColor: 'green',
+            yAxisID: 'y'
           }
         ]
       }
@@ -76,7 +80,27 @@ export default {
     },
     chartOptions() {
       return {
-        responsive: true
+        responsive: true,
+        scales: {
+          y: {
+            type: 'linear',
+            display: true,
+            position: 'left',
+            min: 0,
+            ticks: {
+              stepSize: 1
+            },
+          },
+          y1: {
+            type: 'linear',
+            display: true,
+            position: 'right',
+            min: 0,
+            grid: {
+              drawOnChartArea: false, // only want the grid lines for one axis to show up
+            }
+          }
+        }
       }
     }
   }
