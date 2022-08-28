@@ -1,5 +1,6 @@
 <template>
   <NavbarTop />
+  <Navbar />
   <main class="w-full px-10 my-10 flex justify-center">
     <div class="w-full max-w-4xl">
       <router-view />
@@ -8,11 +9,13 @@
 </template>
 
 <script>
+import Navbar from './components/Navbar.vue'
 import NavbarTop from './components/NavbarTop.vue'
 
 export default {
   name: 'App',
   components: {
+    Navbar,
     NavbarTop
   }
 }
