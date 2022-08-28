@@ -1,14 +1,15 @@
 <template>
-  <div class="w-full overflow-x-scroll mb-4">
+  <div class="w-full overflow-scroll mb-4">
     <table>
       <thead>
-        <th
-        v-for="col in columns"
-        :key="col.shortLabel"
-        class="px-4"
-        >
-          {{ col.shortLabel }}
-        </th>
+        <tr>
+          <th
+          v-for="col in columns"
+          :key="col.shortLabel"
+          >
+            <span>{{ col.shortLabel }}</span>
+          </th>
+        </tr>
       </thead>
       <tbody>
         <PlayersStatsTableRow
@@ -39,11 +40,11 @@ export default {
         { label: 'Price', shortLabel: '£', key: 'now_cost'},
         { label: 'Total Points', shortLabel: 'Pts', key: 'total_points'},
         { label: 'Minutes Played', shortLabel: 'MP', key: 'minutes'},
-        { label: 'Saves', shortLabel: 'S', key: 'saves', exclPos: [2, 3, 4]},
-        { label: 'Penalties Saved', shortLabel: 'PS', key: 'penalties_saved', exclPos: [2, 3, 4]},
         { label: 'Goals Scored', shortLabel: 'GS', key: 'goals_scored'},
         { label: 'Assists', shortLabel: 'A', key: 'assists'},
         { label: 'Clean Sheets', shortLabel: 'CS', key: 'clean_sheets', exclPos: [4]},
+        { label: 'Saves', shortLabel: 'S', key: 'saves', exclPos: [2, 3, 4]},
+        { label: 'Penalties Saved', shortLabel: 'PS', key: 'penalties_saved', exclPos: [2, 3, 4]},
         { label: 'Goals Conceded', shortLabel: 'GC', key: 'goals_conceded', exclPos: [4]},
         { label: 'Own Goals', shortLabel: 'OG', key: 'own_goals'},
         { label: 'Penalties Missed', shortLabel: 'PM', key: 'penalties_missed'},
@@ -55,6 +56,7 @@ export default {
         { label: 'Creativity', shortLabel: 'C', key: 'creativity'},
         { label: 'Threat', shortLabel: 'T', key: 'threat'},
         { label: 'ICT Index', shortLabel: 'ICT', key: 'ict_index'},
+        { label: 'Points per Million', shortLabel: 'PpM', key: 'points_per_million'},
       ]
     }
   }
@@ -62,7 +64,15 @@ export default {
 </script>
 
 <style scoped>
-.table_header {
-  @apply w-10
+table {
+  @apply rounded overflow-hidden;
+}
+
+th {
+  @apply text-left mr-4 py-2;
+  background-color: var(--insight-grey-light)
+}
+th span {
+  @apply pr-10
 }
 </style>

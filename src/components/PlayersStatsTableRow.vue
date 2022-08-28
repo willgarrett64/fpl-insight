@@ -21,6 +21,7 @@
     <td>{{ player.creativity }}</td>
     <td>{{ player.threat }}</td>
     <td>{{ player.ict_index }}</td>
+    <td>{{ player.points_per_million }}</td>
   </tr>
 </template>
 
@@ -41,4 +42,11 @@ export default {
 </script>
 
 <style scoped>
+td a {
+  @apply border-b border-black;
+}
+td a:hover {
+  color: var(--insight-orange);
+  border-color: var(--insight-orange)
+}
 </style>
