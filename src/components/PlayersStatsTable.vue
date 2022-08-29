@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full overflow-scroll mb-4">
+  <div class="table_wrapper">
     <table>
       <thead>
         <tr>
@@ -37,6 +37,7 @@ export default {
       columns: [
         { label: 'Name', shortLabel: 'Name', key: 'web_name'},
         { label: 'Team', shortLabel: 'Team', key: 'team'},
+        { label: 'Position', shortLabel: 'Pos', key: 'position'},
         { label: 'Price', shortLabel: '£', key: 'now_cost'},
         { label: 'Total Points', shortLabel: 'Pts', key: 'total_points'},
         { label: 'Minutes Played', shortLabel: 'MP', key: 'minutes'},
@@ -64,15 +65,25 @@ export default {
 </script>
 
 <style scoped>
+.table_wrapper {
+  @apply relative w-full overflow-scroll rounded mb-4;
+  height: 500px;
+}
+
 table {
-  @apply rounded overflow-hidden;
+  @apply rounded;
 }
 
 th {
-  @apply text-left mr-4 py-2;
-  background-color: var(--insight-grey-light)
+  @apply sticky top-0 text-left mr-4 py-2;
+  background-color: var(--insight-grey-light);
+  z-index: 2;
 }
 th span {
   @apply pr-10
+}
+th:first-child {
+  @apply sticky left-0;
+  z-index: 3;
 }
 </style>

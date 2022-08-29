@@ -2,6 +2,7 @@
   <tr>
     <td><router-link :to=playerRoute>{{ player.web_name }}</router-link></td>
     <td>{{ teamName }}</td>
+    <td class="uppercase">{{ player.position }}</td>
     <td>{{ player.now_cost }}</td>
     <td>{{ player.total_points }}</td>
     <td>{{ player.minutes }}</td>
@@ -42,11 +43,19 @@ export default {
 </script>
 
 <style scoped>
+td {
+  @apply bg-white relative py-2 border-b truncate;
+}
 td a {
-  @apply border-b border-black;
+  @apply border-b border-black truncate;
 }
 td a:hover {
   color: var(--insight-orange);
   border-color: var(--insight-orange)
+}
+
+td:first-child {
+  @apply sticky left-0;
+  z-index: 1;
 }
 </style>

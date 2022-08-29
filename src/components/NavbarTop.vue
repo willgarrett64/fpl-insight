@@ -16,7 +16,7 @@ export default {
 
 <style scoped>
 .navbar-top {
-  @apply sticky w-full top-0 h-20 flex justify-between items-center px-8;
+  @apply sticky w-full top-0 z-50 h-20 flex justify-between items-center px-8;
   background-color: var(--insight-grey);
 }
 

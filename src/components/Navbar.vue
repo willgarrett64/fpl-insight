@@ -30,7 +30,7 @@ export default {
 
 <style scoped>
 .navbar {
-  @apply sticky top-20 w-full flex items-center px-8;
+  @apply sticky top-20 z-50 w-full flex items-center px-8;
   background-color: var(--insight-orange);
 }
 

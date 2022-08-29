@@ -18,6 +18,16 @@ export default {
   },
   data() {
     return {
+      filters: {
+        limit: 40,
+        maxPrice: null,
+        maxTsb: null,
+        minPrice: null,
+        minTsb: null,
+        page: 1,
+        positions: null,
+        teams: null
+      },
       players: null,
       teams: null
     }
@@ -27,7 +37,7 @@ export default {
       this.teams = await api.teams.getTeams()
     },
     async updatePlayers() {
-      this.players = await api.players.getPlayers()
+      this.players = await api.players.getPlayers(this.filters)
     }
   },
   mounted() {
