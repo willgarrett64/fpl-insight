@@ -2,7 +2,7 @@
   <NavbarTop />
   <Navbar />
   <main class="w-full px-10 my-10 flex justify-center">
-    <div class="w-full max-w-4xl">
+    <div class="w-full max-w-6xl">
       <router-view />
     </div>
   </main>
@@ -17,6 +17,24 @@ export default {
   components: {
     Navbar,
     NavbarTop
+  },
+  data() {
+    return {
+      apiInterval: null
+    }
+  },
+  mounted() {
+    this.$store.dispatch('getPositions')
+    this.$store.dispatch('updatePlayers')
+    this.$store.dispatch('updateTeams')
+
+    /**
+     * @todo change interval depending on if in gameweek or not
+    */
+    this.apiInterval = setInterval(() => {
+      this.$store.dispatch('updatePlayers')
+      this.$store.dispatch('updateTeams')
+    }, 60 * 1000)
   }
 }
 </script>
