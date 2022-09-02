@@ -28,7 +28,7 @@ const store = createStore({
       commit('setPositions', positions)
     },
     async updatePlayers({ commit }) {
-      const players = await api.players.getPlayers()
+      const players = await api.players.getPlayers({ limit: 1000 })
       commit('setPlayers', players)
     },
     async updateTeams({ commit }) {

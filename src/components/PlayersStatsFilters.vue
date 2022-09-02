@@ -168,7 +168,7 @@ export default {
     selectedPositionsDisplay() {
       if (this.selectedPositions.length === this.positions.length) return 'All positions'
       else if (!this.selectedPositions.length) return 'Please select position(s)'
-      else return this.selectedPositions.map(team => team.short_name).join(', ')
+      else return this.selectedPositions.map(team => team.singular_name_short).join(', ')
     },
     selectedTeamsDisplay() {
       if (this.selectedTeams.length === this.teams.length) return 'All teams'
