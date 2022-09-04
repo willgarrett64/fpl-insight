@@ -11,6 +11,7 @@
 
 <script>
 import * as filter from '../utils/filter'
+import * as pagination from '../utils/pagination'
 import PlayersStatsFilters from '../components/PlayersStatsFilters.vue'
 import PlayersStatsTable from '../components/PlayersStatsTable.vue'
 import { mapState } from 'vuex'
@@ -29,6 +30,7 @@ export default {
         maxTsb: null,
         minPrice: null,
         minTsb: null,
+        name: '',
         page: 1,
         pos: null,
         teams: null
@@ -38,7 +40,7 @@ export default {
   computed: {
     ...mapState(['players', 'positions', 'teams']),
     filteredPlayers() {
-      return filter.players(this.players, this.filters)
+      return pagination.pageResults(filter.players(this.players, this.filters), 1, 40)
     }
   },
   methods: {

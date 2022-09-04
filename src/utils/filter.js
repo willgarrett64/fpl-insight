@@ -1,7 +1,23 @@
+export const removeAccents = str => {
+  const accents    = 'ÀÁÂÃÄÅàáâãäåÒÓÔÕÕÖØòóôõöøÈÉÊËèéêëðÇçÐÌÍÎÏìíîïÙÚÛÜùúûüÑñŠšŸÿýŽž';
+  const accentsOut = "AAAAAAaaaaaaOOOOOOOooooooEEEEeeeeeCcDIIIIiiiiUUUUuuuuNnSsYyyZz";
+  str = str.split('');
+  const strLen = str.length;
+  var i, x;
+  for (i = 0; i < strLen; i++) {
+    if ((x = accents.indexOf(str[i])) != -1) {
+    str[i] = accentsOut[x];
+    }
+  }
+  return str.join('').toLowerCase();
+}
+
+
 export const players = (allPlayers, filters) => {
   let players = [ ...allPlayers ]
 
   // filters
+  const playerName = removeAccents(filters.name) || ''
   const positions = filters.pos
   const teams = filters.teams
   const minPrice = filters.minPrice || 0
@@ -17,7 +33,8 @@ export const players = (allPlayers, filters) => {
     return price >= minPrice &&
       price <= maxPrice &&
       tsb >= minTsb &&
-      tsb <= maxTsb
+      tsb <= maxTsb &&
+      removeAccents(player.web_name).startsWith(playerName)
   })
 
   return players

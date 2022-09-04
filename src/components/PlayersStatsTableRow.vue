@@ -1,7 +1,7 @@
 <template>
   <tr>
     <td><router-link :to=playerRoute>{{ player.web_name }}</router-link></td>
-    <td>{{ teamName }}</td>
+    <td>{{ player.team_name }}</td>
     <td class="uppercase">{{ player.position }}</td>
     <td>{{ player.now_cost }}</td>
     <td>{{ player.total_points }}</td>
@@ -30,13 +30,10 @@
 
 export default {
   name: 'PlayersStatsTableRow',
-  props: ['player', 'teams'],
+  props: ['player'],
   computed: {
     playerRoute() {
       return this.player && { name: 'Player', params: {id: this.player.id} }
-    },
-    teamName() {
-      return this.player && this.teams && this.teams.find(team => team.id === this.player.team).name
     }
   }
 }

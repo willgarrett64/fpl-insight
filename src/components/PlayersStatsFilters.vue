@@ -1,5 +1,30 @@
 <template>
   <div class="panel w-64 flex flex-col space-y-4">
+    <!-- gameweek period -->
+    <div class="relative">
+      <Listbox v-model=gamesPeriod>
+        <ListboxLabel>Games Period:</ListboxLabel>
+        <ListboxButton class="list_button">
+          <span class="text-left truncate w-52">{{ gamesPeriod.label }}</span>
+          <ChevronDownIcon class="w-4" />
+        </ListboxButton>
+        <ListboxOptions class="list_options">
+          <ListboxOption
+            v-for="period in gamesPeriods"
+            v-slot="{ selected }"
+            :key="period.id"
+            :value=period
+            class="list_option"
+          >
+            <span class="mr-2">{{ period.label }}</span>
+            <div class="border border-gray-500 rounded w-5 h-5 flex items-center justify-center">
+              <CheckIcon class="w-4 text-green-500" v-show=selected />
+            </div>
+          </ListboxOption>
+        </ListboxOptions>
+      </Listbox>
+    </div>
+
     <!-- name filter -->
     <div class="relative">
       <label for="">Player Name:</label>
@@ -9,20 +34,6 @@
           <MagnifyingGlassIcon class="w-4" />
         </div>
       </div>
-      <!-- <Combobox v-model="playerNameInput">
-        <ComboboxLabel>Player name:</ComboboxLabel>
-        <ComboboxInput class="combo_input" @change="playerNameInput = $event.target.value" />
-        <ComboboxOptions class="combo_options">
-          <ComboboxOption
-            v-for="player in filteredPlayers"
-            :key="player.id"
-            :value="player.web_name"
-            class="combo_option"
-          >
-            {{ player.web_name }}
-          </ComboboxOption>
-        </ComboboxOptions>
-      </Combobox> -->
     </div>
 
     <!-- teams filter -->
@@ -109,6 +120,8 @@
 </template>
 
 <script>
+import _ from 'lodash'
+import { mapState } from 'vuex'
 import {
   ChevronDownIcon,
   CheckIcon,
@@ -116,11 +129,6 @@ import {
   MinusIcon
 } from '@heroicons/vue/24/outline'
 import {
-  // Combobox,
-  // ComboboxInput,
-  // ComboboxLabel,
-  // ComboboxOptions,
-  // ComboboxOption,
   Listbox,
   ListboxButton,
   ListboxLabel,
@@ -135,11 +143,6 @@ export default {
   components: {
     ChevronDownIcon,
     CheckIcon,
-    // Combobox,
-    // ComboboxInput,
-    // ComboboxLabel,
-    // ComboboxOptions,
-    // ComboboxOption,
     Listbox,
     ListboxButton,
     ListboxLabel,
@@ -149,9 +152,15 @@ export default {
     MinusIcon,
     // Switch
   },
-  props: ['players', 'positions', 'teams'],
   data() {
     return {
+      gamesPeriod: { id: 1, label  : 'All games' },
+      gamesPeriods: [
+        { id: 1, label  : 'All games' },
+        { id: 2, label  : 'Last 3 games' },
+        { id: 3, label  : 'Last 5 games' },
+        { id: 4, label  : 'Last 10 games' }
+      ],
       maxPrice: null,
       maxTsb: null,
       minPrice: null,
@@ -162,9 +171,7 @@ export default {
     }
   },
   computed: {
-    filteredPlayers() {
-      return this.sortedPlayers.filter(player => player.web_name.toLowerCase().startsWith(this.playerNameInput.toLowerCase()))
-    },
+    ...mapState(['players', 'positions', 'teams']),
     selectedPositionsDisplay() {
       if (this.selectedPositions.length === this.positions.length) return 'All positions'
       else if (!this.selectedPositions.length) return 'Please select position(s)'
@@ -174,9 +181,6 @@ export default {
       if (this.selectedTeams.length === this.teams.length) return 'All teams'
       else if (!this.selectedTeams.length) return 'Please select team(s)'
       else return this.selectedTeams.map(team => team.short_name).join(', ')
-    },
-    sortedPlayers() {
-      return [ ...this.players ].sort((a, b) => a.web_name.localeCompare(b.web_name))
     }
   },
   methods: {
@@ -187,6 +191,9 @@ export default {
     toggleAllPositions() {
       if (this.positions === this.selectedPositions) this.selectedPositions = []
       else this.selectedPositions = this.positions
+    },
+    updateFilters(newFilter) {
+      this.$emit('update-filters', newFilter)
     }
   },
   mounted() {
@@ -195,29 +202,35 @@ export default {
   },
   watch: {
     maxPrice() {
-      this.$emit('update-filters', { maxPrice: this.maxPrice })
+      this.updateFilters({ maxPrice: this.maxPrice })
     },
     maxTsb() {
-      this.$emit('update-filters', { maxTsb: this.maxTsb })
+      this.updateFilters({ maxTsb: this.maxTsb })
     },
     minPrice() {
-      this.$emit('update-filters', { minPrice: this.minPrice })
+      this.updateFilters({ minPrice: this.minPrice })
     },
     minTsb() {
-      this.$emit('update-filters', { minTsb: this.minTsb })
+      this.updateFilters({ minTsb: this.minTsb })
+    },
+    playerNameInput() {
+      const updateName = () => {
+        this.updateFilters({ name: this.playerNameInput })
+      }
+      _.debounce(updateName, 500)()
     },
     selectedPositions() {
-      if (this.selectedPositions.length === 4 || !this.selectedPositions.length) this.$emit('update-filters', { pos: null })
+      if (this.selectedPositions.length === 4 || !this.selectedPositions.length) this.updateFilters({ pos: null })
       else {
         const pos = this.selectedPositions.map(position => position.id)
-        this.$emit('update-filters', { pos })
+        this.updateFilters({ pos })
       }
     },
     selectedTeams() {
-      if (this.selectedTeams.length === 20 || !this.selectedTeams.length) this.$emit('update-filters', { teams: null })
+      if (this.selectedTeams.length === 20 || !this.selectedTeams.length) this.updateFilters({ teams: null })
       else {
         const teams = this.selectedTeams.map(team => team.id)
-        this.$emit('update-filters', { teams })
+        this.updateFilters({ teams })
       }
     }
   }

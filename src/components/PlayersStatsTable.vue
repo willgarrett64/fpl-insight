@@ -16,7 +16,6 @@
           v-for="player in players"
           :key="player.id"
           :player=player
-          :teams=teams
         />
       </tbody>
     </table>
@@ -31,7 +30,7 @@ export default {
   components: {
     PlayersStatsTableRow
   },
-  props: ['players', 'teams'],
+  props: ['players'],
   data() {
     return {
       columns: [
@@ -66,8 +65,8 @@ export default {
 
 <style scoped>
 .table_wrapper {
-  @apply relative w-full overflow-scroll rounded mb-4;
-  height: 500px;
+  @apply relative w-full overflow-auto rounded mb-4;
+  height: 460px;
 }
 
 table {
