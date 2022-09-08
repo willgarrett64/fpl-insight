@@ -18,3 +18,9 @@ export const getPlayers = async (params) => {
   return response.body
 }
 
+// get max player stats
+export const getMaxStats = async () => {
+  const url = `${api_url}/fpl/players/max`
+  const response = await superagent.get(url)
+  return response.body
+}

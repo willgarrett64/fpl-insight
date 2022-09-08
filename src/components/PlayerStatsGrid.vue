@@ -44,14 +44,14 @@ export default {
           { label: 'Points per Gameweek', shortLabel: 'PpGW', key: 'points_per_game'},
           { label: 'Points per Game Played', shortLabel: 'PpGP', key: 'points_per_mins_played'},
           { label: 'Points per Minute Played', shortLabel: 'PpMP', key: 'points_per_mins_played'},
-          { label: 'Average Home Points', shortLabel: 'AHP', key: 'avg_points_home'},
-          { label: 'Average Away Points ', shortLabel: 'AAP', key: 'avg_points_away'},
+          { label: 'Average Home Points', shortLabel: 'AvgH', key: 'avg_points_home'},
+          { label: 'Average Away Points ', shortLabel: 'AvgA', key: 'avg_points_away'},
           // There seems to never be any FDR 1 matches
           // { label: 'Average Points FDR 1 ', shortLabel: 'AF1', key: 'avg_points_fdr_1'},
-          { label: 'Average Points FDR 2 ', shortLabel: 'AF2', key: 'avg_points_fdr_2'},
-          { label: 'Average Points FDR 3 ', shortLabel: 'AF3', key: 'avg_points_fdr_3'},
-          { label: 'Average Points FDR 4 ', shortLabel: 'AF4', key: 'avg_points_fdr_4'},
-          { label: 'Average Points FDR 5 ', shortLabel: 'AF5', key: 'avg_points_fdr_5'},
+          { label: 'Average Points FDR 2 ', shortLabel: 'AvgF2', key: 'avg_points_fdr_2'},
+          { label: 'Average Points FDR 3 ', shortLabel: 'AvgF3', key: 'avg_points_fdr_3'},
+          { label: 'Average Points FDR 4 ', shortLabel: 'AvgF4', key: 'avg_points_fdr_4'},
+          { label: 'Average Points FDR 5 ', shortLabel: 'AvgF5', key: 'avg_points_fdr_5'},
         ],
         // ICT
         ict: [

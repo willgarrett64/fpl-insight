@@ -6,6 +6,9 @@
     <router-link :to="{ name: 'Teams' }" class="nav__button" :class="isSelected('team') ? 'selected' : ''">
       <span>Teams</span>
     </router-link>
+    <router-link :to="{ name: 'HeadToHead' }" class="nav__button" :class="isSelected('head-to-head') ? 'selected' : ''">
+      <span>Head to Head</span>
+    </router-link>
     <router-link :to="{ name: 'MySquad' }" class="nav__button" :class="isSelected('my-squad') ? 'selected' : ''">
       <span>My Squad</span>
     </router-link>

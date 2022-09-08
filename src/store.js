@@ -4,6 +4,7 @@ import { createStore } from 'vuex'
 const store = createStore({
   state: {
     currentGw: null,
+    maxPlayerStats: null,
     players: null,
     positions: null,
     teams: null,
@@ -11,6 +12,9 @@ const store = createStore({
   mutations: {
     setCurrentGw(state, currentGw) {
       state.currentGw = currentGw
+    },
+    setMaxPlayerStats(state, maxStats) {
+      state.maxPlayerStats = maxStats
     },
     setPlayers(state, players) {
       state.players = players
@@ -26,6 +30,10 @@ const store = createStore({
     async getPositions({ commit }) {
       const positions = await api.positions.getPositions()
       commit('setPositions', positions)
+    },
+    async updateMaxPlayerStats({ commit }) {
+      const maxStats = await api.players.getMaxStats()
+      commit('setMaxPlayerStats', maxStats)
     },
     async updatePlayers({ commit }) {
       const players = await api.players.getPlayers({ limit: 1000 })

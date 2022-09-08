@@ -1,3 +1,4 @@
+import HeadToHeadView from './views/HeadToHeadView.vue'
 import MySquadView from './views/MySquadView.vue'
 import PlayerView from './views/PlayerView.vue'
 import PlayersView from './views/PlayersView.vue'
@@ -6,6 +7,11 @@ import TeamsView from './views/TeamsView.vue'
 import { createRouter, createWebHistory } from 'vue-router'
 
 const routes = [
+  {
+    path: '/head-to-head',
+    name: 'HeadToHead',
+    component: HeadToHeadView
+  },
   // {
   //   path: '/',
   //   name: 'Landing',

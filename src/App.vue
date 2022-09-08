@@ -25,6 +25,7 @@ export default {
   },
   mounted() {
     this.$store.dispatch('getPositions')
+    this.$store.dispatch('updateMaxPlayerStats')
     this.$store.dispatch('updatePlayers')
     this.$store.dispatch('updateTeams')
 
@@ -32,6 +33,7 @@ export default {
      * @todo change interval depending on if in gameweek or not
     */
     this.apiInterval = setInterval(() => {
+      this.$store.dispatch('updateMaxPlayerStats')
       this.$store.dispatch('updatePlayers')
       this.$store.dispatch('updateTeams')
     }, 60 * 1000)

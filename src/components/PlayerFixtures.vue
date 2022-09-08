@@ -5,7 +5,7 @@
       <div v-for="gw in gameweeks" :key="gw.event" class="gameweek">
         <div class="gameweek_header">GW{{ gw.event }}</div>
         <div v-for="fixture in gw.fixtures" :key="fixture.id" class="fixture" :class="`fdr${fixture.difficulty}`">
-          {{ fixture.is_home ? getTeamName(fixture.team_a) : getTeamName(fixture.team_h) }}
+          {{ fixture.is_home ? fixture.team_a_short_name : fixture.team_h_short_name }}
           ({{ fixture.is_home ? 'H' : 'A' }})
         </div>
       </div>
@@ -35,9 +35,6 @@ export default {
     }
   },
   methods: {
-    getTeamName(teamId) {
-      return this.teams.find(team => team.id === teamId).short_name
-    },
     async getTeams() {
       this.teams = await api.teams.getTeams()
     }
