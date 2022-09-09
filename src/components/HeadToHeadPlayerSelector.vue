@@ -3,7 +3,7 @@
     <div class="relative">
       <Combobox v-if="players" v-model="selectedPlayer">
         <div class="combo_input">
-          <ComboboxInput @change=onInputChange class="input" />
+          <ComboboxInput @change=onInputChange class="input" placeholder="Enter player name" />
           <div><MagnifyingGlassIcon class="w-4" /></div>
         </div>
         <ComboboxOptions class="combo_options">
@@ -12,7 +12,7 @@
             :key="player.id"
             :value="player"
           >
-            <div class="flex flex-col py-1 border">
+            <div class="flex flex-col py-1 border cursor-pointer hover:bg-gray-100">
               <span class="font-bold">{{ player.web_name }}</span>
               <span class="text-sm">{{ player.team_name }}</span>
               <span class="text-sm">{{ player.total_points }} Points</span>
@@ -71,7 +71,6 @@ export default {
     filteredPlayers() {
       return this.players.filter(player => {
         return removeAccents(player.web_name).startsWith(removeAccents(this.playerInput)) ||
-          removeAccents(player.first_name).startsWith(removeAccents(this.playerInput)) ||
           removeAccents(player.second_name).startsWith(removeAccents(this.playerInput))
       })
     }

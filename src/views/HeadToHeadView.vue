@@ -4,9 +4,9 @@
     <HeadToHeadPlayerSelector @update-player="onUpdatePlayer" :index="0" />
     <HeadToHeadPlayerSelector @update-player="onUpdatePlayer" :index="1" />
     <!-- tabs (for now, these will be inline) -->
-    <HeadToHeadRadarChart :players="selectedPlayers" v-if="selectedPlayers.length === 2" />
-    <HeadToHeadFormChart :players="selectedPlayers" v-if="selectedPlayers.length === 2" />
-    <HeadToHeadFixtures :players="selectedPlayers" v-if="selectedPlayers.length === 2" />
+    <HeadToHeadRadarChart :players="selectedPlayers" v-if="selectedPlayers.length" />
+    <HeadToHeadFormChart :players="selectedPlayers" v-if="selectedPlayers.length" />
+    <HeadToHeadFixtures :players="selectedPlayers" v-if="selectedPlayers.length" />
   </div>
 </template>
 
