@@ -1,12 +1,12 @@
 <template>
   <div class="grid grid-cols-2 gap-4" v-if="players && maxPlayerStats">
     <!-- player selector -->
-    <HeadToHeadPlayerSelector @update-player="onUpdatePlayer" :index="0" />
-    <HeadToHeadPlayerSelector @update-player="onUpdatePlayer" :index="1" />
+    <HeadToHeadPlayerSelector @update-player="onUpdatePlayer" @remove-player="onRemovePlayer" :index="0" />
+    <HeadToHeadPlayerSelector @update-player="onUpdatePlayer" @remove-player="onRemovePlayer" :index="1" />
     <!-- tabs (for now, these will be inline) -->
-    <HeadToHeadRadarChart :players="selectedPlayers" v-if="selectedPlayers.length" />
-    <HeadToHeadFormChart :players="selectedPlayers" v-if="selectedPlayers.length" />
-    <HeadToHeadFixtures :players="selectedPlayers" v-if="selectedPlayers.length" />
+    <HeadToHeadRadarChart :players="selectedPlayers" />
+    <HeadToHeadFormChart :players="selectedPlayers" />
+    <HeadToHeadFixtures :players="selectedPlayers" />
   </div>
 </template>
 
@@ -27,13 +27,16 @@ export default {
   },
   data() {
     return {
-      selectedPlayers: []
+      selectedPlayers: [null]
     }
   },
   computed: {
     ...mapState(['maxPlayerStats', 'players'])
   },
   methods: {
+    onRemovePlayer(index) {
+      this.selectedPlayers[index] = null
+    },
     onUpdatePlayer(player, index) {
       this.selectedPlayers[index] = player
     }

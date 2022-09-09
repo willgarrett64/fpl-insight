@@ -1,7 +1,7 @@
 <template>
   <div v-if="teams" class="panel col-span-2">
     <h4 class="title">Upcoming Fixtures</h4>
-    <div class="table_wrapper">
+    <div class="table_wrapper" v-if=arePlayersSelected>
       <table>
         <thead>
           <tr>
@@ -26,24 +26,25 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { mapGetters, mapState } from 'vuex'
 
 export default {
   name: 'HeadToHeadFixtures',
   props: ['players'],
   computed: {
+    ...mapGetters(['nextGameweek']),
     ...mapState(['teams']),
+    arePlayersSelected() {
+      return this.players.some(player => player !== null)
+    },
     gameweeks() {
-      if (this.players) {
-        const firstGw = this.players[0].fixtures.fixtures[0].event
-        const lastGw = 38
-        let gameweeks = []
-        for (let i = firstGw; i <= lastGw; i++) {
-          gameweeks.push(i)
-        }
-        return gameweeks
+      const firstGw = this.nextGameweek
+      const lastGw = 38
+      let gameweeks = []
+      for (let i = firstGw; i <= lastGw; i++) {
+        gameweeks.push(i)
       }
-      return null
+      return gameweeks
     }
   },
   methods: {

@@ -29,7 +29,7 @@
       <div class="flex justify-center w-full">
         <div class="w-full max-w-lg">
           <Radar
-            v-if="players"
+            v-if="arePlayersSelected"
             :chart-options="chartOptions"
             :chart-data="chartData"
           />
@@ -131,6 +131,9 @@ export default {
   },
   computed: {
     ...mapState(['maxPlayerStats']),
+    arePlayersSelected() {
+      return this.players.some(player => player !== null)
+    },
     chartData() {
       const datasets = []
 

@@ -3,15 +3,15 @@ import { createStore } from 'vuex'
 
 const store = createStore({
   state: {
-    currentGw: null,
+    events: null,
     maxPlayerStats: null,
     players: null,
     positions: null,
     teams: null,
   },
   mutations: {
-    setCurrentGw(state, currentGw) {
-      state.currentGw = currentGw
+    setEvents(state, events) {
+      state.events = events
     },
     setMaxPlayerStats(state, maxStats) {
       state.maxPlayerStats = maxStats
@@ -31,6 +31,10 @@ const store = createStore({
       const positions = await api.positions.getPositions()
       commit('setPositions', positions)
     },
+    async updateEvents({ commit }) {
+      const events = await api.events.getEvents()
+      commit('setEvents', events)
+    },
     async updateMaxPlayerStats({ commit }) {
       const maxStats = await api.players.getMaxStats()
       commit('setMaxPlayerStats', maxStats)
@@ -45,6 +49,9 @@ const store = createStore({
     }
   },
   getters: {
+    nextGameweek(state) {
+      return state.events && state.events.find(event => event.is_next).id
+    }
   }
 })
 

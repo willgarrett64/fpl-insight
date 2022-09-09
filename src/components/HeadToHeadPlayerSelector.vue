@@ -25,12 +25,15 @@
       <UserPlusIcon class="w-20 text-gray-300" />
       <span class="">Search a player to start comparison</span>
     </div>
-    <div v-else class="h-56 py-4 flex flex-col">
-      <span class="font-bold text-lg">{{ selectedPlayer.web_name }}</span>
-      <span class="text-md">{{ selectedPlayer.team_name }}</span>
-      <span class="text-md">Total Points: {{ selectedPlayer.total_points }}</span>
-      <span class="text-md">Form: {{ selectedPlayer.form }}</span>
-      <span class="text-md">PPM: {{ selectedPlayer.points_per_million }}</span>
+    <div v-else class="h-56 py-4 flex justify-between items-start">
+      <div class="flex flex-col">
+        <span class="font-bold text-lg">{{ selectedPlayer.web_name }}</span>
+        <span class="text-md">{{ selectedPlayer.team_name }}</span>
+        <span class="text-md">Total Points: {{ selectedPlayer.total_points }}</span>
+        <span class="text-md">Form: {{ selectedPlayer.form }}</span>
+        <span class="text-md">PPM: {{ selectedPlayer.points_per_million }}</span>
+      </div>
+      <button @click="removePlayer" class="delete_button"><XMarkIcon class="w-5" /></button>
     </div>
   </div>
 </template>
@@ -44,7 +47,8 @@ import {
 } from '@headlessui/vue'
 import {
   MagnifyingGlassIcon,
-  UserPlusIcon
+  UserPlusIcon,
+  XMarkIcon
 } from '@heroicons/vue/24/outline'
 import { mapState } from 'vuex'
 import { removeAccents } from '../utils/filter'
@@ -57,7 +61,8 @@ export default {
     ComboboxOptions,
     ComboboxOption,
     MagnifyingGlassIcon,
-    UserPlusIcon
+    UserPlusIcon,
+    XMarkIcon
   },
   props: ['index'],
   data() {
@@ -78,6 +83,9 @@ export default {
   methods: {
     onInputChange(event) {
       this.playerInput = event.target.value
+    },
+    removePlayer() {
+      this.$emit('remove-player', this.index)
     }
   },
   watch: {
@@ -91,5 +99,12 @@ export default {
 <style scoped>
 .input {
   @apply p-0 w-full focus:outline-none;
+}
+
+.delete_button {
+  @apply w-max;
+}
+.delete_button:hover {
+  color: var(--insight-orange);
 }
 </style>

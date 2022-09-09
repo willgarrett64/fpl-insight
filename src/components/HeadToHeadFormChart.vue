@@ -29,7 +29,7 @@
       <div class="flex justify-center w-full">
         <div class="w-full">
           <Line
-            v-if="players"
+            v-if="arePlayersSelected"
             :chart-options="chartOptions"
             :chart-data="chartData"
           />
@@ -52,6 +52,8 @@ import {
   ListboxOption,
   // Switch
 } from '@headlessui/vue'
+import { mapGetters } from 'vuex'
+
 import {
   Chart as ChartJS,
   Title,
@@ -118,6 +120,10 @@ export default {
     }
   },
   computed: {
+    ...mapGetters(['nextGameweek']),
+    arePlayersSelected() {
+      return this.players.some(player => player !== null)
+    },
     chartData() {
       const stat = this.selectedStat.key
       const datasets = []
@@ -148,12 +154,27 @@ export default {
         pointHoverBorderColor: 'rgb(5, 185, 250)',
       })
 
-      const labels = player1 ? player1.fixtures.history.map(f => `GW${f.round}`) : player2 ? player2.fixtures.history.map(f => `GW${f.round}`) : null
+      const labels = []
+      for (let i = 0; i < this.nextGameweek - 1; i++) labels.push(`GW${i + 1}`)
       return { labels, datasets }
     },
     chartOptions() {
       const maxStats = { ...this.maxStats }
       const key = this.selectedStat.key
+      const tooltip = this.arePlayersSelected ? {
+        interaction: {
+          mode: 'index',
+          intersect: false,
+          callbacks: {
+            label: function(tooltipItem) {
+              const playerName = tooltipItem.dataset.label
+              const amount = tooltipItem.raw * maxStats[key]
+              return `${playerName}: ${amount}`
+            }
+          }
+        }
+      } : null
+
       return {
         responsive: true,
         maintainAspectRatio: false,
@@ -164,24 +185,12 @@ export default {
           }
         },
         plugins: {
-          tooltip: {
-            interaction: {
-              mode: 'index',
-              intersect: false,
-              callbacks: {
-                label: function(tooltipItem) {
-                  const playerName = tooltipItem.dataset.label
-                  const amount = tooltipItem.raw * maxStats[key]
-                  return `${playerName}: ${amount}`
-                }
-              }
-            }
-          }
+          tooltip
         }
       }
     },
     maxStats() {
-      if (!this.players) return null
+      if (!this.arePlayersSelected) return null
       const allFixtures = this.players.reduce((p, c) => {
         p.push(...c.fixtures.history)
         return p
