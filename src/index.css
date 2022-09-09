@@ -47,8 +47,7 @@
   @apply border border-gray-500 rounded w-full p-2 truncate flex justify-between items-center;
 }
 .combo_options {
-  @apply absolute top-14 z-10 bg-white border border-gray-500 rounded w-full h-60 overflow-y-scroll;
-  max-height: max-content;
+  @apply absolute top-12 z-10 bg-white border border-gray-500 rounded w-full max-h-60 overflow-y-auto;
 }
 
 /* list */

@@ -238,15 +238,6 @@ export default {
 </script>
 
 <style scoped>
-/* combo */
-.combo_input {
-  @apply border border-gray-500 rounded w-full p-2 truncate flex justify-between items-center;
-}
-.combo_options {
-  @apply absolute top-14 z-10 bg-white border border-gray-500 rounded w-full h-60 overflow-y-scroll;
-  max-height: max-content;
-}
-
 /* list */
 .list_button {
   @apply border border-gray-500 rounded w-full p-2 truncate flex justify-between items-center;
