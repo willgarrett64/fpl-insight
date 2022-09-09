@@ -120,39 +120,36 @@ export default {
   computed: {
     chartData() {
       const stat = this.selectedStat.key
+      const datasets = []
+
       const player1 = this.players[0]
-      const player1Data = player1.fixtures.history.map(f => this.maxStats[stat] ? f[stat] / this.maxStats[stat] : 0)
+      if (player1) datasets.push({
+        data: player1.fixtures.history.map(f => this.maxStats[stat] ? f[stat] / this.maxStats[stat] : 0),
+        label: player1.web_name,
+        fill: false,
+        backgroundColor: 'rgba(250, 176, 5, 0.2)',
+        borderColor: 'rgb(250, 176, 5)',
+        pointBackgroundColor: 'rgb(250, 176, 5)',
+        pointBorderColor: '#fff',
+        pointHoverBackgroundColor: '#fff',
+        pointHoverBorderColor: 'rgb(250, 176, 5)',
+      })
+
       const player2 = this.players[1]
-      const player2Data = player2.fixtures.history.map(f => this.maxStats[stat] ? f[stat] / this.maxStats[stat] : 0)
-      const labels = player1.fixtures.history.map(f => `GW${f.round}`)
-      if (this.players) return {
-        labels,
-        datasets: [
-          {
-            data: player1Data,
-            label: player1.web_name,
-            fill: false,
-            backgroundColor: 'rgba(250, 176, 5, 0.2)',
-            borderColor: 'rgb(250, 176, 5)',
-            pointBackgroundColor: 'rgb(250, 176, 5)',
-            pointBorderColor: '#fff',
-            pointHoverBackgroundColor: '#fff',
-            pointHoverBorderColor: 'rgb(250, 176, 5)',
-          },
-          {
-            data: player2Data,
-            label: player2.web_name,
-            fill: false,
-            backgroundColor: 'rgba(5, 185, 250, 0.2)',
-            borderColor: 'rgb(5, 185, 250)',
-            pointBackgroundColor: 'rgb(5, 185, 250)',
-            pointBorderColor: '#fff',
-            pointHoverBackgroundColor: '#fff',
-            pointHoverBorderColor: 'rgb(5, 185, 250)',
-          }
-        ]
-      }
-      return null
+      if (player2) datasets.push({
+        data: player2.fixtures.history.map(f => this.maxStats[stat] ? f[stat] / this.maxStats[stat] : 0),
+        label: player2.web_name,
+        fill: false,
+        backgroundColor: 'rgba(5, 185, 250, 0.2)',
+        borderColor: 'rgb(5, 185, 250)',
+        pointBackgroundColor: 'rgb(5, 185, 250)',
+        pointBorderColor: '#fff',
+        pointHoverBackgroundColor: '#fff',
+        pointHoverBorderColor: 'rgb(5, 185, 250)',
+      })
+
+      const labels = player1 ? player1.fixtures.history.map(f => `GW${f.round}`) : player2 ? player2.fixtures.history.map(f => `GW${f.round}`) : null
+      return { labels, datasets }
     },
     chartOptions() {
       const maxStats = { ...this.maxStats }
